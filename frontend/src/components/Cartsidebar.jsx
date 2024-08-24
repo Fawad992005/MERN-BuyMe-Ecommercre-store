@@ -30,7 +30,7 @@ const CartSidebar = ({ onClose }) => {
         });
         setUser(response.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
