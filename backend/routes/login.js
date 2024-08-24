@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
       httpOnly: true,
       maxAge: 3600000,
       secure: true, // Use true if using HTTPS
-      sameSite: 'None', 
+      sameSite:"lax", 
     });
     res.json({message:"succesful"})
 
