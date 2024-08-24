@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your front-end URL
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Replace with your front-end URL
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
