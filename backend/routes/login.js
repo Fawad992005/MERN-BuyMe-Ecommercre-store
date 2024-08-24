@@ -5,7 +5,7 @@ const User = require("../models/user");
 const cookieParser = require("cookie-parser");
 const router = express.Router();
 
-router.use(cookieParser());
+
 
 router.post("/", async (req, res) => {
   try {
