@@ -28,7 +28,9 @@ const Navbar = () => {
           withCredentials: true,
         });
         setUser(response.data);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     };
 
     fetchUser();
