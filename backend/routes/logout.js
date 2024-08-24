@@ -1,16 +1,10 @@
-const express = require('express');
+// routes/logout.js
+const express = require("express");
 const router = express.Router();
 
-router.post('/logout', (req, res) => {
-  // Clear the token cookie
-  res.clearCookie('token', {
-    httpOnly: true,
-    secure: true, // Same as your login setup
-    sameSite: 'None', // For cross-site cookie handling
-    path: '/', // Clear cookie across all paths
-  });
-
-  res.status(200).json({ message: 'Logout successful' });
+router.post("/", (req, res) => {
+  res.clearCookie("token");
+  res.send({ message: "Logged out successfully" });
 });
 
 module.exports = router;
