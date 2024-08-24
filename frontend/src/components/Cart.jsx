@@ -1,16 +1,14 @@
 import { React, useState, useEffect } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import { IoClose } from "react-icons/io5";
 import { useCart } from "../context/cartcontext";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import rectnagle from "../assets/Images/rectangle1.jpg";
-import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
+import axios from "axios";
+import "./Cartsidebar.css"
 
-const Cart = () => {
-  const { cart, removeFromCart, updateQuantity, clearcart } = useCart();
-  const [user, setUser] = useState(null);
+const CartSidebar = ({ onClose }) => {
   const [TotalAmount, setTotalAmount] = useState(0);
+  const [user, setUser] = useState(null);
+  const { cart, removeFromCart, updateQuantity } = useCart();
 
   useEffect(() => {
     const calculateTotalAmount = () => {
@@ -25,121 +23,97 @@ const Cart = () => {
 
   useEffect(() => {
     // Fetch current user information (if authenticated)
-    const fetchUserData = async () => {
-  const token = localStorage.getItem("token");
-
-  try {
-    const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/currentuser", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    // Handle the response
-    console.log(response.data);
-  } catch (error) {
-    console.error("Failed to fetch user data:", error);
-  }
-};
-
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/currentuser", {
+          withCredentials: true,
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
     fetchUser();
   }, []);
 
   return (
-    <>
-      <Navbar />
-      <section className="w-full h-[49vh] relative">
+    <div
+  className="cart-sidebar"
+>
+  <div className="flex justify-between items-center p-4 border-b">
+    <h2 className="text-xl font-bold">Shopping Cart</h2>
+    <IoClose className="cursor-pointer" onClick={onClose} />
+  </div>
+  <div className="p-4 flex-1">
+    {cart.length === 0 ? (
+      <p className="text-gray-500">Your cart is empty.</p>
+    ) : (
+      cart.map((item) => (
         <div
-          className="absolute bg-cover h-full w-full"
-          style={{ backgroundImage: `url(${rectnagle})` }}
-        ></div>
-        <div className="flex justify-center items-center pt-9">
-          <img src={logo} alt="" className="relative" width={100} />
-        </div>
-        <div className="flex flex-col justify-center items-center gap-8">
-          <h1 className="relative font-bold text-xl md:text-6xl font-serif">
-            Cart
-          </h1>
-          <p className="relative font-bold text-xl font-serif">
-            Home &gt; Cart
-          </p>
-        </div>
-      </section>
-      <section className="max-w-6xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-6">My Cart</h1>
-        {cart.length === 0 ? (
-          <p className="text-gray-500 text-lg">Your cart is empty.</p>
-        ) : (
-          <div className="space-y-6">
-            {cart.map((item) => (
-              <div
-                key={`${item._id}-${item.size}`}
-                className="flex flex-col md:flex-row bg-white shadow-md rounded-lg overflow-hidden border border-gray-200"
-              >
-                <img
-                  src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
-                  alt={item.name}
-                  className="w-full md:w-1/3 h-56 object-cover"
-                />
-                <div className="flex-1 flex flex-col justify-center text-center items-center p-4">
-                  <h3 className="text-2xl font-semibold mb-2">{item.name}</h3>
-                  <p className="text-xl text-gray-500 mb-1">Size: {item.size}</p>
-                  <p className="text-xl text-gray-500 mb-2">Price: Rs.{item.price}</p>
-                  <div className="flex items-center justify-center mb-2">
-                    <button
-                      className="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
-                      onClick={() => updateQuantity(item.id, item.size, -1)}
-                    >
-                      -
-                    </button>
-                    <span className="mx-4 text-lg">{item.quantity}</span>
-                    <button
-                      className="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
-                      onClick={() => updateQuantity(item.id, item.size, 1)}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-                <div className="flex items-center justify-center p-4 border-t md:border-t-0 md:border-l border-gray-200">
-                  <button
-                    className="text-red-500 hover:text-red-700 font-semibold"
-                    onClick={() => removeFromCart(item.id, item.size)}
-                  >
-                    Remove
-                  </button>
-                </div>
+          key={`${item._id}-${item.size}`}
+          className="flex justify-between items-center mb-4"
+        >
+          <div className="flex items-center">
+            <img
+              src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
+              alt={item.name}
+              className="w-16 h-16 object-cover"
+            />
+            <div className="ml-4">
+              <h3 className="text-lg font-medium">{item.name}</h3>
+              <p className="text-sm text-gray-500">Size: {item.size}</p>
+              <p className="text-sm text-gray-500">
+                Price: Rs.{item.price}
+              </p>
+              <div className="flex items-center mt-2">
+                <button
+                  className="px-2 py-1 border rounded-sm"
+                  onClick={() => updateQuantity(item.id, item.size, -1)}
+                >
+                  -
+                </button>
+                <span className="mx-2">{item.quantity}</span>
+                <button
+                  className="px-2 py-1 border rounded-sm"
+                  onClick={() => updateQuantity(item.id, item.size, 1)}
+                >
+                  +
+                </button>
               </div>
-            ))}
+            </div>
           </div>
-        )}
-        <div className="flex flex-col items-center md:flex-row justify-center my-10 gap-5">
           <button
-            className="px-16 py-4 rounded-xl border-gray-900 border text-lg md:text-xl font-medium"
-            onClick={() => {
-              clearcart();
-            }}
+            className="text-red-500 hover:text-red-700"
+            onClick={() => removeFromCart(item.id, item.size)}
           >
-            Clear Cart
+            Remove
           </button>
-          {user ? (
-            <Link to={"/checkout"}>
-              <button className="px-16 py-4 rounded-xl border-gray-900 border text-lg md:text-xl font-medium">
-                Checkout
-              </button>
-            </Link>
-          ) : (
-            <p className="underline text-blue-500 text-lg">
-              <Link to={"/login"}>Login to checkout</Link>
-            </p>
-          )}
-          <p className="font-medium text-lg md:text-xl">Total Amount Rs. {TotalAmount}</p>
         </div>
-      </section>
-      <Footer />
-    </>
-  );
-};
+      ))
+    )}
+  </div>
+  <div className="m-4 border-t flex flex-col md:flex-row justify-around items-center gap-5">
+  <p className="mt-3 font-bold">Total Amount: Rs.{TotalAmount}</p>
+  <Link to={"/cart"}>
+    <button className="px-3 py-2 mt-2 rounded-xl border-gray-900 border text-xl font-medium md:px-10">
+      View My Cart
+    </button>
+  </Link>
+  {user ? (
+    <Link to={"/checkout"}>
+      <button className="px-3 py-2 mt-2 rounded-xl border-gray-900 border text-xl font-medium md:px-5">
+        Checkout
+      </button>
+    </Link>
+  ) : (
+    <p className="underline text-blue-500 mt-4">
+      <Link to={"/login"}>Login to checkout</Link>
+    </p>
+  )}
+</div>
 
-export default Cart;
+</div>
+)};
+
+export default CartSidebar;
