@@ -21,9 +21,7 @@ const Login = () => {
       await axios.post('https://mern-buyme-ecommercre-store.onrender.com/login', {
         email,
         password,
-      },);
-      const { token } = response.data;
-       localStorage.setItem("token", token);
+      }, { withCredentials: true });
 
       // Handle successful login (e.g., save token, redirect)
       toast('User logged in', {
