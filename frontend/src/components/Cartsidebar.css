@@ -1,0 +1,34 @@
+/* CartSidebar Base Styles */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 33.33%; /* 1/3 of the screen */
+    height: 60vh;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Styles for screens 768px and smaller */
+  @media screen and (max-width: 768px) {
+    .cart-sidebar {
+      width: 100%; /* Full width for mobile */
+      height: 70vh; /* Increase height to 80vh for mobile */
+    }
+  
+    .cart-sidebar img {
+      width: 10rem; /* Adjust image size for mobile */
+      height: 10rem; /* Adjust image size for mobile */
+    }
+  
+    .cart-sidebar button {
+      font-size: 1rem; /* Adjust button font size for mobile */
+    }
+  }
+  
