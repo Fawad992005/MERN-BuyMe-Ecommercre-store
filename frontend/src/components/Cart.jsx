@@ -25,14 +25,23 @@ const Cart = () => {
 
   useEffect(() => {
     // Fetch current user information (if authenticated)
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/currentuser", {
-          withCredentials: true,
-        });
-        setUser(response.data);
-      } catch (error) {}
-    };
+    const fetchUserData = async () => {
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/currentuser", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // Handle the response
+    console.log(response.data);
+  } catch (error) {
+    console.error("Failed to fetch user data:", error);
+  }
+};
+
 
     fetchUser();
   }, []);
