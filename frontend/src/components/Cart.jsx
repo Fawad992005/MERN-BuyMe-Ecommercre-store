@@ -27,7 +27,7 @@ const Cart = () => {
     // Fetch current user information (if authenticated)
     const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/currentuser", {
+        const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/currentuser", {
           withCredentials: true,
         });
         setUser(response.data);
@@ -69,7 +69,7 @@ const Cart = () => {
                 className="flex flex-col md:flex-row bg-white shadow-md rounded-lg overflow-hidden border border-gray-200"
               >
                 <img
-                  src={`http://localhost:5000${item.imageUrl}`}
+                  src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
                   alt={item.name}
                   className="w-full md:w-1/3 h-56 object-cover"
                 />

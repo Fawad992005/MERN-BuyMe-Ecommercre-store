@@ -24,7 +24,7 @@ const Navbar = () => {
     // Fetch current user information (if authenticated)
     const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/currentuser", {
+        const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/currentuser", {
           withCredentials: true,
         });
         setUser(response.data);
@@ -43,7 +43,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/logout",
+        "https://mern-buyme-ecommercre-store.onrender.com/logout",
         {},
         { withCredentials: true }
       );

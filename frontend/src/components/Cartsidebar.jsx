@@ -25,7 +25,7 @@ const CartSidebar = ({ onClose }) => {
     // Fetch current user information (if authenticated)
     const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/currentuser", {
+        const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/currentuser", {
           withCredentials: true,
         });
         setUser(response.data);
@@ -56,7 +56,7 @@ const CartSidebar = ({ onClose }) => {
         >
           <div className="flex items-center">
             <img
-              src={`http://localhost:5000${item.imageUrl}`}
+              src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
               alt={item.name}
               className="w-16 h-16 object-cover"
             />

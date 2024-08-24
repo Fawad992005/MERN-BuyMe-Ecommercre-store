@@ -25,7 +25,7 @@ const Productpage = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/shop");
+      const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/shop");
       setproducts(response.data.slice(0, 4));
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -35,7 +35,7 @@ const Productpage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/product/${id}`);
+        const response = await axios.get(`https://mern-buyme-ecommercre-store.onrender.com/product/${id}`);
         setProduct(response.data);
         setLoading(false);
       } catch (error) {
@@ -93,7 +93,7 @@ const Productpage = () => {
       <Navbar />
       <section className="container mx-auto p-4 flex flex-col lg:flex-row w-full justify-center items-center gap-10 h-auto lg:h-[60vh]">
         <img
-          src={`http://localhost:5000${product.imageUrl}`}
+          src={`https://mern-buyme-ecommercre-store.onrender.com${product.imageUrl}`}
           className="w-full lg:w-[400px]"
           alt={product.name}
         />
@@ -147,7 +147,7 @@ const Productpage = () => {
             >
               <Link to={`/product/${item._id}`}>
                 <img
-                  src={`http://localhost:5000${item.imageUrl}`}
+                  src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
                   className="w-32 md:w-48 lg:w-[300px]"
                   alt={item.name}
                 />

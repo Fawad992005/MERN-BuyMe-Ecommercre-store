@@ -25,7 +25,7 @@ const Shop = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/shop");
+      const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/shop");
       console.log(response.data);
       setProducts(response.data);
       setFilteredProducts(response.data);
@@ -134,7 +134,7 @@ const Shop = () => {
             >
               <Link to={`/product/${item._id}`}>
                 <img
-                  src={`http://localhost:5000${item.imageUrl}`}
+                  src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
                   alt={item.name}
                   className="object-cover w-full"
                   style={{ maxWidth: "300px" }}

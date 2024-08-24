@@ -60,7 +60,7 @@ const Favourites = () => {
                 >
                   <Link to={`/product/${item._id}`}>
                     <img
-                      src={`http://localhost:5000${item.imageUrl}`}
+                      src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
                       alt={item.name}
                       className="object-cover"
                       style={{ width: "100%", maxWidth: "300px" }}

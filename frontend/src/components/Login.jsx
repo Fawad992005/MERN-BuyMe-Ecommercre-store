@@ -18,7 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/login', {
+      await axios.post('https://mern-buyme-ecommercre-store.onrender.com/login', {
         email,
         password,
       }, { withCredentials: true });
