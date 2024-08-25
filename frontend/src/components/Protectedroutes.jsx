@@ -12,7 +12,7 @@ const ProtectedRoute = ({children,isAdmin}) => {
       try {
         const response = await axios.get('https://mern-buyme-ecommercre-store.onrender.com/currentuser', { withCredentials: true });
         setIsAuthenticated(true);
-        if (response.data.role !== 'ADMIN') {
+        if (response.data.user.role !== 'ADMIN') {
           setIsAuthorized(false);
         } else {
           setIsAuthorized(true);
