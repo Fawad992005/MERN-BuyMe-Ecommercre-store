@@ -1,3 +1,6 @@
+const express = require("express");
+const router = express.Router();
+
 router.get("/", (req, res) => {
   if (req.user) {
     // Send user data and a message in the same response
@@ -10,3 +13,5 @@ router.get("/", (req, res) => {
     return res.status(401).json({ message: "Not authenticated" });
   }
 });
+
+module.exports = router;
