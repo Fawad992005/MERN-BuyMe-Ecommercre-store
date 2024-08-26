@@ -92,7 +92,7 @@ const Contact = () => {
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            className="w-full border border-gray-400 rounded-md py-5"
+            className="w-full border border-gray-400 rounded-md py-5 pl-3"
             required
           />
           <ValidationError prefix="Name" field="name" errors={state.errors} />
@@ -106,7 +106,7 @@ const Contact = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className="w-full border border-gray-400 rounded-md py-5"
+            className="w-full border border-gray-400 rounded-md py-5 pl-3"
             required
           />
           <ValidationError prefix="Email" field="email" errors={state.errors} />
@@ -119,7 +119,7 @@ const Contact = () => {
             name="message"
             value={formData.message}
             onChange={handleInputChange}
-            className="w-full border border-gray-400 rounded-md py-5"
+            className="w-full border border-gray-400 rounded-md py-5 pl-3"
             required
           />
           <ValidationError

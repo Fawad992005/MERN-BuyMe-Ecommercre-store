@@ -71,7 +71,7 @@ const Login = () => {
             <p className="font-medium">Email Address</p>
             <input
               type="email"
-              className="w-full border border-gray-400 rounded-md py-5"
+              className="w-full border border-gray-400 rounded-md py-5 pl-3"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -81,7 +81,7 @@ const Login = () => {
             <p className="font-medium">Password</p>
             <input
               type="password"
-              className="w-full border border-gray-400 rounded-md py-5"
+              className="w-full border border-gray-400 rounded-md py-5 pl-3"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
