@@ -5,6 +5,7 @@ import Deliverybar from "./Deliverybar";
 import rectnagle from "../assets/Images/rectangle1.jpg";
 import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
 import { useCart } from "../context/cartcontext";
+import { Button } from "@mui/material";
 
 const Checkout = () => {
   const { cart } = useCart();
@@ -254,13 +255,27 @@ const Checkout = () => {
           </div>
           <h2>Cash on Delivery</h2>
           <div className="flex justify-center items-center my-10">
-            <button
-              className="px-16 py-5 rounded-xl border-gray-900 border text-xl font-medium"
-              onClick={handleplaceorder}
-              disabled={loading} // Disable button while loading
-            >
-              {loading ? "Placing Order..." : "Place Your Order"}
-            </button>
+          <Button
+                variant="outlined"
+                disabled={loading}
+                onClick={handleplaceorder}
+                sx={{
+                  color: "black",
+                  borderColor: "black", // Change border color
+                  borderRadius: "10px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  py:"15px",
+                  px:"20px",
+                  "&:hover": {
+                    backgroundColor: "black",
+                    color: "white",
+                  
+                  }, // Change border radius
+                }}
+              >
+                {loading ? "Placing Order..." : "Place Your Order"}
+              </Button>
           </div>
           {success && (
             <div className="text-center mt-4 text-green-500">

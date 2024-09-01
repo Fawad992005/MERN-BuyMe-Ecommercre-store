@@ -38,7 +38,10 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (productId, size) => {
-    const updatedCart = cart.filter((item) => (item.id === productId && item.size !== size));
+    // Remove only the specific product with the given ID and size
+    const updatedCart = cart.filter(
+      (item) => !(item._id === productId && item.size === size)
+    );
     setCart(updatedCart);
   };
 

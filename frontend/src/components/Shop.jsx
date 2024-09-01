@@ -25,10 +25,13 @@ const Shop = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/shop");
-      console.log(response.data);
-      setProducts(response.data);
-      setFilteredProducts(response.data);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/shop`);
+      if (Array.isArray(response.data)) {
+        setProducts(response.data);
+        setFilteredProducts(response.data);
+      } else {
+        console.error("Expected array but got:", response.data);
+      }
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -104,7 +107,8 @@ const Shop = () => {
               <select
                 name="priceRange"
                 onChange={handleFilterChange}
-                className="p-2 border"
+                className="p-2 border cursor-pointer"
+                
               >
                 <option value="">All Prices</option>
                 <option value="0-5000">Rs.0 - Rs.5000</option>
@@ -134,7 +138,7 @@ const Shop = () => {
             >
               <Link to={`/product/${item._id}`}>
                 <img
-                  src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}${item.imageUrl}`}
                   alt={item.name}
                   className="object-cover w-full"
                   style={{ maxWidth: "300px" }}

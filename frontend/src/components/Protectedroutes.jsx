@@ -10,7 +10,7 @@ const ProtectedRoute = ({children,isAdmin}) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get('https://mern-buyme-ecommercre-store.onrender.com/currentuser', { withCredentials: true });
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/currentuser`, { withCredentials: true });
         setIsAuthenticated(true);
         if (response.data.user.role !== 'ADMIN') {
           setIsAuthorized(false);

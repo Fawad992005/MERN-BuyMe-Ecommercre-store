@@ -17,7 +17,7 @@ const AdminPanel = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://mern-buyme-ecommercre-store.onrender.com/admin', { withCredentials: true });
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin`, { withCredentials: true });
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -47,14 +47,14 @@ const AdminPanel = () => {
     try {
       if (editingid) {
         // Update existing product
-        await axios.put(`https://mern-buyme-ecommercre-store.onrender.com/admin/${editingid}`, formData, {
+        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/admin/${editingid}`, formData, {
           withCredentials: true,
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         seteditingid(null);
       } else {
         // Create new product
-        const response = await axios.post('https://mern-buyme-ecommercre-store.onrender.com/admin', formData, {
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/admin`, formData, {
           withCredentials: true,
           headers: { 'Content-Type': 'multipart/form-data' },
         });
@@ -69,7 +69,7 @@ const AdminPanel = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://mern-buyme-ecommercre-store.onrender.com/admin/${id}`, { withCredentials: true });
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/admin/${id}`, { withCredentials: true });
       setProducts(products.filter((product) => product._id !== id));
     } catch (error) {
       console.error('Error deleting product:', error);
@@ -127,7 +127,7 @@ const AdminPanel = () => {
               <p>{item.name}</p>
               <p>{item.description}</p>
               <p>{item.price}</p>
-              <img src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`} alt={item.name} style={{ width: '200px' }} />
+              <img src={`${import.meta.env.VITE_BACKEND_URL}${item.imageUrl}`} alt={item.name} style={{ width: '200px' }} />
               <button onClick={() => handleDelete(item._id)}>Delete</button>
               <button onClick={() => handleEdit(item._id)}>Edit</button>
             </li>

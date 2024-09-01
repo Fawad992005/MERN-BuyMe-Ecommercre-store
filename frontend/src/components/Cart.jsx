@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import rectnagle from "../assets/Images/rectangle1.jpg";
 import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
+import { Button } from "@mui/material";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, clearcart } = useCart();
@@ -27,12 +28,15 @@ const Cart = () => {
     // Fetch current user information (if authenticated)
     const fetchUser = async () => {
       try {
-        const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/currentuser", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/currentuser`,
+          {
+            withCredentials: true,
+          }
+        );
         setUser(response.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
@@ -71,14 +75,18 @@ const Cart = () => {
                 className="flex flex-col md:flex-row bg-white shadow-md rounded-lg overflow-hidden border border-gray-200"
               >
                 <img
-                  src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}${item.imageUrl}`}
                   alt={item.name}
                   className="w-full md:w-1/3 h-56 object-cover"
                 />
                 <div className="flex-1 flex flex-col justify-center text-center items-center p-4">
                   <h3 className="text-2xl font-semibold mb-2">{item.name}</h3>
-                  <p className="text-xl text-gray-500 mb-1">Size: {item.size}</p>
-                  <p className="text-xl text-gray-500 mb-2">Price: Rs.{item.price}</p>
+                  <p className="text-xl text-gray-500 mb-1">
+                    Size: {item.size}
+                  </p>
+                  <p className="text-xl text-gray-500 mb-2">
+                    Price: Rs.{item.price}
+                  </p>
                   <div className="flex items-center justify-center mb-2">
                     <button
                       className="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
@@ -108,26 +116,56 @@ const Cart = () => {
           </div>
         )}
         <div className="flex flex-col items-center md:flex-row justify-center my-10 gap-5">
-          <button
-            className="px-16 py-4 rounded-xl border-gray-900 border text-lg md:text-xl font-medium"
-            onClick={() => {
-              clearcart();
-            }}
-          >
-            Clear Cart
-          </button>
+        <Button
+                variant="Outlined"
+                sx={{
+                  border:"1px solid",
+                  color: "black",
+                  fontSize:"15px",
+                  fontWeight:"bold",
+                  borderColor: "black", // Change border color
+                  borderRadius: "14px",
+                  py:"20px",
+                  px:"50px",
+                  "&:hover": {
+                    backgroundColor: "black",
+                    color: "white",
+                  }, // Change border radius
+                }}
+                onClick={clearcart}
+              >
+                Clear cart
+              </Button>
           {user ? (
             <Link to={"/checkout"}>
-              <button className="px-16 py-4 rounded-xl border-gray-900 border text-lg md:text-xl font-medium">
+              <Button
+                variant="Outlined"
+                sx={{
+                  border:"1px solid",
+                  color: "black",
+                  fontSize:"15px",
+                  fontWeight:"bold",
+                  borderColor: "black", // Change border color
+                  borderRadius: "14px",
+                  py:"20px",
+                  px:"50px",
+                  "&:hover": {
+                    backgroundColor: "black",
+                    color: "white",
+                  }, // Change border radius
+                }}
+              >
                 Checkout
-              </button>
+              </Button>
             </Link>
           ) : (
             <p className="underline text-blue-500 text-lg">
               <Link to={"/login"}>Login to checkout</Link>
             </p>
           )}
-          <p className="font-medium text-lg md:text-xl">Total Amount Rs. {TotalAmount}</p>
+          <p className="font-medium text-lg md:text-xl">
+            Total Amount Rs. {TotalAmount}
+          </p>
         </div>
       </section>
       <Footer />

@@ -8,6 +8,7 @@ import { useCart } from "../context/cartcontext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFavourites } from "../context/favouritescontext";
+import { Button,Tooltip } from "@mui/material";
 
 const Productpage = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const Productpage = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("https://mern-buyme-ecommercre-store.onrender.com/shop");
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/shop`);
       setproducts(response.data.slice(0, 4));
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -35,7 +36,7 @@ const Productpage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`https://mern-buyme-ecommercre-store.onrender.com/product/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/product/${id}`);
         setProduct(response.data);
         setLoading(false);
       } catch (error) {
@@ -93,7 +94,7 @@ const Productpage = () => {
       <Navbar />
       <section className="container mx-auto p-4 flex flex-col lg:flex-row w-full justify-center items-center gap-10 h-auto lg:h-[60vh]">
         <img
-          src={`https://mern-buyme-ecommercre-store.onrender.com${product.imageUrl}`}
+          src={`${import.meta.env.VITE_BACKEND_URL}${product.imageUrl}`}
           className="w-full lg:w-[400px]"
           alt={product.name}
         />
@@ -117,15 +118,33 @@ const Productpage = () => {
             ))}
           </div>
           <div className="flex gap-2 lg:gap-5 mt-4">
-            <button
-              className="px-6 lg:px-10 py-2 lg:py-3 border border-black rounded-lg font-medium"
-              onClick={handleAddToCart}
-            >
-              Add To Cart
-            </button>
+            <Tooltip title="Add to Cart">
+          <Button
+                variant="outlined"
+                onClick={handleAddToCart}
+                sx={{
+                  color: "black",
+                  borderColor: "black", // Change border color
+                  borderRadius: "10px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  py:"15px",
+                  px:"30px",
+                  "&:hover": {
+                    backgroundColor: "black",
+                    color: "white",
+                  
+                  }, // Change border radius
+                }}
+              >
+                Add To Cart
+              </Button>
+              </Tooltip>
+              <Tooltip title="Add To Favourites">
             <button onClick={handlefavourites}>
               <IoIosHeartEmpty className="w-6 lg:w-8 h-6 lg:h-8" />
             </button>
+            </Tooltip>
           </div>
         </div>
       </section>
@@ -147,7 +166,7 @@ const Productpage = () => {
             >
               <Link to={`/product/${item._id}`}>
                 <img
-                  src={`https://mern-buyme-ecommercre-store.onrender.com${item.imageUrl}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}${item.imageUrl}`}
                   className="w-32 md:w-48 lg:w-[300px]"
                   alt={item.name}
                 />
@@ -163,9 +182,11 @@ const Productpage = () => {
             </div>
           ))}
         </div>
+        <Tooltip title="Go To Shop " placement="right">
         <Link to={"/shop"}>
           <button className="hover:underline my-20">View More</button>
         </Link>
+        </Tooltip>
       </section>
       <ToastContainer />
       <Footer />

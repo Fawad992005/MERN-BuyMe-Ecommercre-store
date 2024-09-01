@@ -19,7 +19,7 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://mern-buyme-ecommercre-store.onrender.com/signin', {
+      const response = await axios.post(`${import.meta.env.VITEBACKEND_URL}/signin`, {
         username,
         email,
         password

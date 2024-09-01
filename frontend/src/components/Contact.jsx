@@ -5,6 +5,7 @@ import Deliverybar from "./Deliverybar";
 import rectangle from "../assets/Images/rectangle1.jpg";
 import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
 import { useForm, ValidationError } from "@formspree/react";
+import { Button, Tooltip } from "@mui/material";
 
 const Contact = () => {
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORM_SPREE_KEY);
@@ -62,15 +63,18 @@ const Contact = () => {
           />
         </div>
         <div className="flex flex-col justify-center items-center gap-8">
-          <h1 className="relative font-bold text-xl md:text-6xl font-serif">Contact Us</h1>
+          <h1 className="relative font-bold text-xl md:text-6xl font-serif">
+            Contact Us
+          </h1>
           <p className="relative font-bold text-xl">Home &gt; Contact Us</p>
         </div>
       </section>
       <section className="flex justify-center items-center flex-col gap-5 my-5">
         <h1 className="text-4xl font-bold">Get in touch with Us</h1>
         <p className="text-gray-500 md:w-1/3 text-center w-1/2">
-          For More Information About Our Product & Services. Please Feel Free To Drop Us An Email. 
-          Our Staff Always Be There To Help You Out. Do Not Hesitate!
+          For More Information About Our Product & Services. Please Feel Free To
+          Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not
+          Hesitate!
         </p>
       </section>
       <section className="flex justify-center items-center flex-col my-10">
@@ -127,14 +131,27 @@ const Contact = () => {
             field="message"
             errors={state.errors}
           />
-
-          <button
-            type="submit"
-            disabled={state.submitting}
-            className="px-16 py-5 b rounded-xl border-gray-900 border text-xl font-medium"
-          >
-            Submit
-          </button>
+          <Tooltip title="Submit Form">
+            <Button
+              variant="outlined"
+              type="submit"
+              sx={{
+                color: "black",
+                borderColor: "black", // Change border color
+                borderRadius: "10px",
+                fontSize: "15px",
+                fontWeight: "bold",
+                py: "15px",
+                px: "50px",
+                "&:hover": {
+                  backgroundColor: "black",
+                  color: "white",
+                }, // Change border radius
+              }}
+            >
+              Submit
+            </Button>
+          </Tooltip>
         </form>
       </section>
       <Deliverybar />
