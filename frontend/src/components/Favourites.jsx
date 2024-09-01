@@ -1,4 +1,4 @@
-import React from "react";
+import {React,useEffect} from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Deliverybar from "./Deliverybar";
@@ -8,9 +8,15 @@ import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
 import { Link } from "react-router-dom"; // Correct import for React Router's Link
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Favourites = () => {
   const { favourites, removefromfavourites } = useFavourites();
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   const handleremove = (id) => {
     removefromfavourites(id);
@@ -29,7 +35,7 @@ const Favourites = () => {
   return (
     <>
       <Navbar />
-      <section className="w-full md:h-[49vh] relative h-[45vh]">
+      <section className="w-full md:h-[49vh] relative h-[45vh]" data-aos="fade-down">
         <div
           className="absolute bg-cover bg-center h-full w-full"
           style={{ backgroundImage: `url(${rectnagle})` }}
@@ -46,7 +52,7 @@ const Favourites = () => {
           </p>
         </div>
       </section>
-      <section className="my-20 flex justify-center">
+      <section className="my-20 flex justify-center" data-aos="slide-up">
         <div className="flex flex-col gap-10 w-full max-w-7xl px-4 md:px-8">
           <h1 className="text-3xl text-center font-bold md:text-6xl">My Favourites</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
