@@ -6,6 +6,8 @@ import rectangle from "../assets/Images/rectangle1.jpg";
 import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
 import { useForm, ValidationError } from "@formspree/react";
 import { Button, Tooltip } from "@mui/material";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Contact = () => {
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORM_SPREE_KEY);
@@ -17,6 +19,10 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   useEffect(() => {
     if (state.succeeded) {
@@ -49,7 +55,7 @@ const Contact = () => {
   return (
     <>
       <Navbar />
-      <section className="w-full md:h-[49vh] relative h-[45vh]">
+      <section className="w-full md:h-[49vh] relative h-[45vh]" data-aos="fade-down">
         <div
           className="absolute bg-cover bg-center h-full w-full"
           style={{ backgroundImage: `url(${rectangle})` }}
@@ -69,7 +75,7 @@ const Contact = () => {
           <p className="relative font-bold text-xl">Home &gt; Contact Us</p>
         </div>
       </section>
-      <section className="flex justify-center items-center flex-col gap-5 my-5">
+      <section className="flex justify-center items-center flex-col gap-5 my-5" data-aos="fade-down">
         <h1 className="text-4xl font-bold">Get in touch with Us</h1>
         <p className="text-gray-500 md:w-1/3 text-center w-1/2">
           For More Information About Our Product & Services. Please Feel Free To
@@ -77,7 +83,7 @@ const Contact = () => {
           Hesitate!
         </p>
       </section>
-      <section className="flex justify-center items-center flex-col my-10">
+      <section className="flex justify-center items-center flex-col my-10" data-aos="slide-up">
         {showThankYou && (
           <p className="text-green-500 text-xl font-semibold">
             Thanks for contacting us!

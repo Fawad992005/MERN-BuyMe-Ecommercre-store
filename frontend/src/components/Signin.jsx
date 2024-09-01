@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Navbar from './Navbar';
 import Footer from "./Footer";
 import Deliverybar from "./Deliverybar";
@@ -9,6 +9,8 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button,Tooltip } from '@mui/material';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Signin = () => {
   const [username, setUsername] = useState('');
@@ -16,6 +18,10 @@ const Signin = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +59,7 @@ const Signin = () => {
   return (
     <>
       <Navbar />
-      <section className="w-full md:h-[49vh] relative h-[45vh]">
+      <section className="w-full md:h-[49vh] relative h-[45vh]" data-aos="fade-down">
         <div
           className="absolute bg-cover bg-center h-full w-full"
           style={{ backgroundImage: `url(${rectnagle})` }}
@@ -66,7 +72,7 @@ const Signin = () => {
           <p className="relative font-bold text-xl font serif">Home &gt; Sign Up</p>
         </div>
       </section>
-      <section className="flex flex-col justify-center items-center gap-10 my-20 px-5">
+      <section className="flex flex-col justify-center items-center gap-10 my-20 px-5" data-aos="slide-up">
         <h1 className="text-4xl font-bold">Sign Up</h1>
         {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit} className="flex flex-col gap-10 ">

@@ -8,6 +8,8 @@ import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
 import { MdOutlineFilterList } from "react-icons/md";
 import { PiCirclesFourFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -18,6 +20,10 @@ const Shop = () => {
   const [isFiltered, setIsFiltered] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 8;
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   useEffect(() => {
     fetchProducts();
@@ -81,7 +87,7 @@ const Shop = () => {
   return (
     <>
       <Navbar />
-      <section className="w-full h-[45vh] md:h-[49vh] relative">
+      <section className="w-full h-[45vh] md:h-[49vh] relative" data-aos="fade-down">
         <div
           className="absolute bg-cover bg-center h-full w-full"
           style={{ backgroundImage: `url(${rectnagle})` }}
@@ -99,7 +105,7 @@ const Shop = () => {
         </div>
       </section>
 
-      <section className="h-32 md:h-40 bg-slate-100 flex justify-around items-center px-4">
+      <section className="h-32 md:h-40 bg-slate-100 flex justify-around items-center px-4" data-aos="slide-up">
         <div className="flex gap-4 md:gap-5 items-center">
           <div className="flex gap-2 cursor-pointer">
             <MdOutlineFilterList className="w-6 h-10 md:w-8 md:h-10" />
@@ -129,7 +135,7 @@ const Shop = () => {
         </div>
       </section>
 
-      <section className="my-10 md:my-20 flex justify-center">
+      <section className="my-10 md:my-20 flex justify-center" data-aos="slide-up">
         <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
           {currentProducts.map((item) => (
             <div
@@ -157,7 +163,7 @@ const Shop = () => {
         </div>
       </section>
 
-      <section className="flex justify-center items-center my-10 gap-4 md:gap-14">
+      <section className="flex justify-center items-center my-10 gap-4 md:gap-14" data-aos="slide-up">
         {Array.from({ length: totalPages }, (_, index) => (
           <div
             key={index + 1}

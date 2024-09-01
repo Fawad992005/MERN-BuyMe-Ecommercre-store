@@ -3,6 +3,8 @@ import { IoCartOutline } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { toast } from "react-toastify";
 import {
   Badge,
@@ -42,6 +44,10 @@ const Navbar = () => {
   const [cartside, setcartside] = useState(false); // State for Drawer
   const [TotalAmount, setTotalAmount] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   useEffect(() => {
     // Fetch current user information (if authenticated)
@@ -393,7 +399,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="flex items-center py-5">
+    <nav className="flex items-center py-5" data-aos="fade-down">
       {/* Desktop Navbar */}
       <ul className="md:flex justify-around items-center pl-5 w-full hidden">
         <li className="flex items-center">

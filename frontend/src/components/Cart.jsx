@@ -7,11 +7,17 @@ import { Link } from "react-router-dom";
 import rectnagle from "../assets/Images/rectangle1.jpg";
 import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
 import { Button } from "@mui/material";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, clearcart } = useCart();
   const [user, setUser] = useState(null);
   const [TotalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   useEffect(() => {
     const calculateTotalAmount = () => {
@@ -46,7 +52,7 @@ const Cart = () => {
   return (
     <>
       <Navbar />
-      <section className="w-full h-[49vh] relative">
+      <section className="w-full h-[49vh] relative" data-aos="fade-down">
         <div
           className="absolute bg-cover h-full w-full"
           style={{ backgroundImage: `url(${rectnagle})` }}
@@ -63,7 +69,7 @@ const Cart = () => {
           </p>
         </div>
       </section>
-      <section className="max-w-6xl mx-auto p-6">
+      <section className="max-w-6xl mx-auto p-6" data-aos="slide-up">
         <h1 className="text-3xl font-bold mb-6">My Cart</h1>
         {cart.length === 0 ? (
           <p className="text-gray-500 text-lg">Your cart is empty.</p>

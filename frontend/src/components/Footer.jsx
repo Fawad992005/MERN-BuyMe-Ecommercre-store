@@ -1,10 +1,15 @@
-import React from "react";
+import {React,useEffect} from "react";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Footer = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   return (
     <footer className="bg-white">
-      <section className="flex flex-col lg:flex-row gap-10 lg:gap-32 w-full justify-center items-center my-10">
+      <section className="flex flex-col lg:flex-row gap-10 lg:gap-32 w-full justify-center items-center my-10" data-aos="fade-down">
         <address className="flex flex-col gap-2 justify-center items-center text-center not-italic">
           <p className="font-medium">Gulshan-e-Maymar, Karachi</p>
           <p className="font-medium">Pakistan</p>

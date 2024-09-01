@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import Navbar from "./Navbar";
 import rocketsingleseater from "../assets/Images/rocketsingleseater1-removebg-preview.png";
 import sidetable from "../assets/Images/granitesquaresidetable1-removebg-preview.png";
@@ -11,11 +11,19 @@ import asgradsofa from "../assets/Images/asgaardsofa1.jpg";
 import rectangle from "../assets/Images/rectangle17.jpg";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Home = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   return (
     <>
-      <section className="background bg-yellow-100 h-screen relative">
+      <section
+        className="background bg-yellow-100 h-screen relative"
+        data-aos="fade-down"
+      >
         <Navbar />
         <section className="flex flex-col md:flex-row justify-center items-center gap-10 px-4 md:px-0">
           <section className="flex flex-col mt-20 md:mt-52 gap-10 text-xl">
@@ -35,7 +43,10 @@ const Home = () => {
         </section>
       </section>
 
-      <section className="flex flex-col md:flex-row gap-20 w-full md:justify-around mx-auto bg-slate-50 px-4 md:px-0 justify-center items-center">
+      <section
+        className="flex flex-col md:flex-row gap-20 w-full md:justify-around mx-auto bg-slate-50 px-4 md:px-0 justify-center items-center"
+        data-aos="slide-up"
+      >
         <section className="flex flex-col justify-center items-center my-10">
           <img
             src={sidetable}
@@ -45,17 +56,13 @@ const Home = () => {
           <h1 className="text-3xl md:text-4xl font-bold">Side Table</h1>
         </section>
         <section className="flex flex-col justify-center items-center my-10">
-          <img
-            src={seater}
-            alt="Seater"
-            className="max-w-xs md:max-w-sm"
-          />
+          <img src={seater} alt="Seater" className="max-w-xs md:max-w-sm" />
 
           <h1 className="text-3xl md:text-4xl font-bold">Seater</h1>
         </section>
       </section>
 
-      <section className="my-10">
+      <section className="my-10" data-aos="slide-up">
         <div className="flex flex-col justify-center items-center gap-6 text-center">
           <h1 className="text-4xl font-bold">Top Picks For You</h1>
           <p className="text-gray-600 px-4 md:px-0">
@@ -117,7 +124,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="flex flex-col md:flex-row w-full bg-yellow-50 gap-20 md:gap-96 lg:justify-evenly px-4 md:px-0 justify-center items-center pb-5">
+      <section className="flex flex-col md:flex-row w-full bg-yellow-50 gap-20 md:gap-96 lg:justify-evenly px-4 md:px-0 justify-center items-center pb-5" data-aos="slide-up">
         <img
           src={asgradsofa}
           alt="Asgaard Sofa"
@@ -132,7 +139,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="w-full flex flex-col justify-center items-center bg-slate-300 relative h-[500px] md:h-[600px] gap-10 md:gap-20">
+      <section className="w-full flex flex-col justify-center items-center bg-slate-300 relative h-[500px] md:h-[600px] gap-10 md:gap-20" data-aos="slide-up">
         <div
           className="absolute inset-0 bg-no-repeat bg-cover"
           style={{ backgroundImage: `url(${rectangle})` }}

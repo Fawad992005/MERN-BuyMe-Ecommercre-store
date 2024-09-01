@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFavourites } from "../context/favouritescontext";
 import { Button,Tooltip } from "@mui/material";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Productpage = () => {
   const { id } = useParams();
@@ -19,6 +21,10 @@ const Productpage = () => {
   const [selectedSize, setSelectedSize] = useState("");
   const { addtofavourites } = useFavourites();
   const { addToCart } = useCart();
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   useEffect(() => {
     fetchProducts();
@@ -92,7 +98,7 @@ const Productpage = () => {
   return (
     <>
       <Navbar />
-      <section className="container mx-auto p-4 flex flex-col lg:flex-row w-full justify-center items-center gap-10 h-auto lg:h-[60vh]">
+      <section className="container mx-auto p-4 flex flex-col lg:flex-row w-full justify-center items-center gap-10 h-auto lg:h-[60vh]" data-aos="fade-down">
         <img
           src={`${import.meta.env.VITE_BACKEND_URL}${product.imageUrl}`}
           className="w-full lg:w-[400px]"
@@ -149,14 +155,14 @@ const Productpage = () => {
         </div>
       </section>
       <hr className="my-8" />
-      <section className="flex flex-col justify-center items-center my-10 gap-10 w-full">
+      <section className="flex flex-col justify-center items-center my-10 gap-10 w-full" data-aos="slide-up">
         <h2 className="text-2xl lg:text-3xl font-medium">Description</h2>
         <p className="text-gray-500 text-center w-full lg:w-3/4">
           {product.description}
         </p>
       </section>
       <hr className="my-8" />
-      <section className="flex flex-col justify-center items-center font-medium text-2xl lg:text-4xl my-10">
+      <section className="flex flex-col justify-center items-center font-medium text-2xl lg:text-4xl my-10" data-aos="slide-up">
         <h1>Related Products</h1>
         <div className="w-full lg:w-3/4 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {products.map((item) => (

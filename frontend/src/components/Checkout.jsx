@@ -6,6 +6,8 @@ import rectnagle from "../assets/Images/rectangle1.jpg";
 import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
 import { useCart } from "../context/cartcontext";
 import { Button } from "@mui/material";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Checkout = () => {
   const { cart } = useCart();
@@ -23,6 +25,10 @@ const Checkout = () => {
     phone: "",
     emailAddress: "",
   });
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   useEffect(() => {
     const calculateTotalAmount = () => {
@@ -80,7 +86,7 @@ const Checkout = () => {
   return (
     <>
       <Navbar />
-      <section className="w-full h-[49vh] relative">
+      <section className="w-full h-[49vh] relative" data-aos="fade-down">
         <div
           className="absolute bg-cover bg-center h-full w-full"
           style={{ backgroundImage: `url(${rectnagle})` }}
@@ -97,7 +103,7 @@ const Checkout = () => {
           </p>
         </div>
       </section>
-      <section className="flex flex-wrap justify-center py-12 px-4">
+      <section className="flex flex-wrap justify-center py-12 px-4" data-aos="slide-up">
         <div className="w-full md:w-1/2 lg:w-1/3 p-4">
           <h1 className="text-2xl font-bold mb-6">Billing Details</h1>
           <form className="space-y-4">
