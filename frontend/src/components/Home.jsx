@@ -45,7 +45,7 @@ const Home = () => {
 
       <section
         className="flex flex-col md:flex-row gap-20 w-full md:justify-around mx-auto bg-slate-50 px-4 md:px-0 justify-center items-center"
-        data-aos="slide-up"
+        data-aos="fade-down"
       >
         <section className="flex flex-col justify-center items-center my-10">
           <img
@@ -62,7 +62,7 @@ const Home = () => {
         </section>
       </section>
 
-      <section className="my-10" data-aos="slide-up">
+      <section className="my-10" data-aos="fade-down">
         <div className="flex flex-col justify-center items-center gap-6 text-center">
           <h1 className="text-4xl font-bold">Top Picks For You</h1>
           <p className="text-gray-600 px-4 md:px-0">
@@ -124,7 +124,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="flex flex-col md:flex-row w-full bg-yellow-50 gap-20 md:gap-96 lg:justify-evenly px-4 md:px-0 justify-center items-center pb-5" data-aos="slide-up">
+      <section className="flex flex-col md:flex-row w-full bg-yellow-50 gap-20 md:gap-96 lg:justify-evenly px-4 md:px-0 justify-center items-center pb-5" data-aos="fade-down">
         <img
           src={asgradsofa}
           alt="Asgaard Sofa"

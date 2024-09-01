@@ -105,7 +105,7 @@ const Shop = () => {
         </div>
       </section>
 
-      <section className="h-32 md:h-40 bg-slate-100 flex justify-around items-center px-4" data-aos="slide-up">
+      <section className="h-32 md:h-40 bg-slate-100 flex justify-around items-center px-4" data-aos="fade-down">
         <div className="flex gap-4 md:gap-5 items-center">
           <div className="flex gap-2 cursor-pointer">
             <MdOutlineFilterList className="w-6 h-10 md:w-8 md:h-10" />
@@ -135,7 +135,7 @@ const Shop = () => {
         </div>
       </section>
 
-      <section className="my-10 md:my-20 flex justify-center" data-aos="slide-up">
+      <section className="my-10 md:my-20 flex justify-center" data-aos="fade-down">
         <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
           {currentProducts.map((item) => (
             <div
@@ -163,7 +163,7 @@ const Shop = () => {
         </div>
       </section>
 
-      <section className="flex justify-center items-center my-10 gap-4 md:gap-14" data-aos="slide-up">
+      <section className="flex justify-center items-center my-10 gap-4 md:gap-14" data-aos="fade-down">
         {Array.from({ length: totalPages }, (_, index) => (
           <div
             key={index + 1}
