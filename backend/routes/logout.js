@@ -5,7 +5,7 @@ const router = express.Router();
 router.post("/", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: "true",
+    secure: true,
     path: "/",
     sameSite: "None",
   });
