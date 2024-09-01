@@ -8,6 +8,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Button,Tooltip } from '@mui/material';
 
 const Signin = () => {
   const [username, setUsername] = useState('');
@@ -104,7 +105,28 @@ const Signin = () => {
             <p>Remember Me</p>
           </div>
           <div className="flex gap-9 items-center">
-            <button type="submit" className="px-10 py-5 b rounded-xl border-gray-900 border text-xl font-medium md:px-16">Sign Up</button>
+            <Tooltip title="Submit Form">
+          <Button
+                variant="outlined"
+                type="submit"
+                sx={{
+                  color: "black",
+                  borderColor: "black", // Change border color
+                  borderRadius: "10px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  py:"20px",
+                  px:"40px",
+                  "&:hover": {
+                    backgroundColor: "black",
+                    color: "white",
+                  
+                  }, // Change border radius
+                }}
+              >
+                Sign Up
+              </Button>
+              </Tooltip>
             <Link to="/login">
               <p className="underline text-blue-400">Already Have An account?</p>
             </Link>

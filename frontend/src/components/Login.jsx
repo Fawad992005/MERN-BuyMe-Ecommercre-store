@@ -7,7 +7,8 @@ import logo from "../assets/Images/meubelhouse_logos_05-removebg-preview.png";
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css"; 
+import { Button,Tooltip } from "@mui/material";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -92,7 +93,28 @@ const Login = () => {
             <p>Remember Me</p>
           </div>
           <div className="flex gap-9 items-center">
-            <button type="submit" className="px-16 py-5 b rounded-xl border-gray-900 border text-xl font-medium">Log In</button>
+            <Tooltip>
+          <Button
+                variant="outlined"
+                type="submit"
+                sx={{
+                  color: "black",
+                  borderColor: "black", // Change border color
+                  borderRadius: "10px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  py:"20px",
+                  px:"40px",
+                  "&:hover": {
+                    backgroundColor: "black",
+                    color: "white",
+                  
+                  }, // Change border radius
+                }}
+              >
+                Log In
+              </Button>
+              </Tooltip>
             <Link to="/signin">
               <p className="underline text-blue-400">Create Account?</p>
             </Link>
