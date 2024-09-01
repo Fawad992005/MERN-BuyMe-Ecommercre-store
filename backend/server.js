@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173", // Replace with your front-end URL
+    origin: process.env.FRONTEND_URL||"http://localhost:5173", // Replace with your front-end URL
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -45,5 +45,5 @@ app.use("/product",Products)
 
 
 
-const PORT = process.env.PORT || 5000;
+const PORT =  5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
